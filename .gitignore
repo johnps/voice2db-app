@@ -39,3 +39,6 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# tinywhisper model
+ assets/ggml-tiny.en.bin
