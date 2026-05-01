@@ -57,6 +57,13 @@ jest.mock('../screens/ExtractionScreen', () => ({
   },
 }));
 
+jest.mock('../screens/ConfirmationScreen', () => ({
+  ConfirmationScreen: () => {
+    const { Text } = require('react-native');
+    return <Text>Confirmation</Text>;
+  },
+}));
+
 const renderWithSession = (session: Session | null) =>
   render(
     <AuthContext.Provider value={{ session, loading: false }}>

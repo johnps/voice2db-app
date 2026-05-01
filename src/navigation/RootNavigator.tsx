@@ -8,6 +8,7 @@ import { BeneficiaryListScreen } from '../screens/BeneficiaryListScreen';
 import { BeneficiaryProfileScreen } from '../screens/BeneficiaryProfileScreen';
 import { RecordingScreen } from '../screens/RecordingScreen';
 import { ExtractionScreen } from '../screens/ExtractionScreen';
+import { ConfirmationScreen } from '../screens/ConfirmationScreen';
 import type { ExtractionResult } from '../modules/extraction/extractionSchema';
 
 export type AuthStackParamList = {
@@ -37,7 +38,7 @@ export function RootNavigator() {
           <AppStack.Screen name="BeneficiaryProfile" component={BeneficiaryProfileScreen} options={{ title: 'Profile' }} />
           <AppStack.Screen name="Recording" component={RecordingScreen} options={{ title: 'Record' }} />
           <AppStack.Screen name="Extraction" component={ExtractionScreen} options={{ title: 'Review Data' }} />
-          <AppStack.Screen name="Confirmation" component={() => null} options={{ title: 'Confirm' }} />
+          <AppStack.Screen name="Confirmation" component={ConfirmationScreen} options={{ title: 'Confirm' }} />
         </AppStack.Navigator>
       ) : (
         <AuthStack.Navigator screenOptions={{ headerShown: false }}>
