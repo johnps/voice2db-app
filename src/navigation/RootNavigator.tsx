@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { LoginScreen } from '../screens/LoginScreen';
 import { OTPScreen } from '../screens/OTPScreen';
 import { BeneficiaryListScreen } from '../screens/BeneficiaryListScreen';
+import { BeneficiaryProfileScreen } from '../screens/BeneficiaryProfileScreen';
 
 export type AuthStackParamList = {
   Login: undefined;
@@ -13,6 +14,7 @@ export type AuthStackParamList = {
 
 export type AppStackParamList = {
   BeneficiaryList: undefined;
+  BeneficiaryProfile: { id: string };
 };
 
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
@@ -26,6 +28,7 @@ export function RootNavigator() {
       {session ? (
         <AppStack.Navigator>
           <AppStack.Screen name="BeneficiaryList" component={BeneficiaryListScreen} options={{ title: 'Beneficiaries' }} />
+          <AppStack.Screen name="BeneficiaryProfile" component={BeneficiaryProfileScreen} options={{ title: 'Profile' }} />
         </AppStack.Navigator>
       ) : (
         <AuthStack.Navigator screenOptions={{ headerShown: false }}>

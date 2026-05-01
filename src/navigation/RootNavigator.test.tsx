@@ -36,6 +36,13 @@ jest.mock('../screens/BeneficiaryListScreen', () => ({
   },
 }));
 
+jest.mock('../screens/BeneficiaryProfileScreen', () => ({
+  BeneficiaryProfileScreen: () => {
+    const { Text } = require('react-native');
+    return <Text>Beneficiary Profile</Text>;
+  },
+}));
+
 const renderWithSession = (session: Session | null) =>
   render(
     <AuthContext.Provider value={{ session, loading: false }}>
