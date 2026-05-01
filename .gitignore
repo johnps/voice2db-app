@@ -40,5 +40,5 @@ yarn-error.*
 /ios
 /android
 
-# tinywhisper model
- assets/ggml-tiny.en.bin
+# whisper model
+assets/ggml-tiny.en.bin
