@@ -15,6 +15,7 @@ module.exports = {
       preset: 'jest-expo',
       moduleNameMapper: {
         'expo/src/winter/runtime.*': '<rootDir>/__mocks__/expo-winter-runtime.js',
+        '\\.(bin|mp3|wav|m4a|png|jpg|jpeg)$': '<rootDir>/__mocks__/fileMock.js',
       },
       transformIgnorePatterns: [
         'node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*)',

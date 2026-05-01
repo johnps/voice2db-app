@@ -43,6 +43,13 @@ jest.mock('../screens/BeneficiaryProfileScreen', () => ({
   },
 }));
 
+jest.mock('../screens/RecordingScreen', () => ({
+  RecordingScreen: () => {
+    const { Text } = require('react-native');
+    return <Text>Recording</Text>;
+  },
+}));
+
 const renderWithSession = (session: Session | null) =>
   render(
     <AuthContext.Provider value={{ session, loading: false }}>

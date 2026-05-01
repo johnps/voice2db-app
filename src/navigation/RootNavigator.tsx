@@ -6,6 +6,7 @@ import { LoginScreen } from '../screens/LoginScreen';
 import { OTPScreen } from '../screens/OTPScreen';
 import { BeneficiaryListScreen } from '../screens/BeneficiaryListScreen';
 import { BeneficiaryProfileScreen } from '../screens/BeneficiaryProfileScreen';
+import { RecordingScreen } from '../screens/RecordingScreen';
 
 export type AuthStackParamList = {
   Login: undefined;
@@ -15,6 +16,8 @@ export type AuthStackParamList = {
 export type AppStackParamList = {
   BeneficiaryList: undefined;
   BeneficiaryProfile: { id: string };
+  Recording: { beneficiaryId: string; beneficiaryName: string };
+  Extraction: { beneficiaryId: string; transcript: string; audioUri: string };
 };
 
 const AuthStack = createNativeStackNavigator<AuthStackParamList>();
@@ -29,6 +32,8 @@ export function RootNavigator() {
         <AppStack.Navigator>
           <AppStack.Screen name="BeneficiaryList" component={BeneficiaryListScreen} options={{ title: 'Beneficiaries' }} />
           <AppStack.Screen name="BeneficiaryProfile" component={BeneficiaryProfileScreen} options={{ title: 'Profile' }} />
+          <AppStack.Screen name="Recording" component={RecordingScreen} options={{ title: 'Record' }} />
+          <AppStack.Screen name="Extraction" component={() => null} options={{ title: 'Review' }} />
         </AppStack.Navigator>
       ) : (
         <AuthStack.Navigator screenOptions={{ headerShown: false }}>

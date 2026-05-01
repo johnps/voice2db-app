@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { AppStackParamList } from '../navigation/RootNavigator';
 import { createBeneficiaryModule, type Beneficiary } from '../modules/beneficiary/BeneficiaryModule';
@@ -7,9 +7,11 @@ import { supabase } from '../lib/supabase';
 
 const beneficiaryModule = createBeneficiaryModule(supabase);
 
-type Props = NativeStackScreenProps<AppStackParamList, 'BeneficiaryProfile'>;
+type Props = NativeStackScreenProps<AppStackParamList, 'BeneficiaryProfile'> & {
+  navigation: NativeStackScreenProps<AppStackParamList, 'BeneficiaryProfile'>['navigation'];
+};
 
-export function BeneficiaryProfileScreen({ route }: Props) {
+export function BeneficiaryProfileScreen({ route, navigation }: Props) {
   const { id } = route.params;
   const [profile, setProfile] = useState<Beneficiary | null>(null);
   const [loading, setLoading] = useState(true);
@@ -29,6 +31,12 @@ export function BeneficiaryProfileScreen({ route }: Props) {
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       <Text style={styles.name}>{profile.name}</Text>
       <Text style={styles.village}>{profile.village_name}</Text>
+      <TouchableOpacity
+        style={styles.recordBtn}
+        onPress={() => navigation.navigate('Recording', { beneficiaryId: profile.id, beneficiaryName: profile.name })}
+      >
+        <Text style={styles.recordBtnText}>Record Observation</Text>
+      </TouchableOpacity>
 
       <Section title="Profile">
         <Row label="Age" value={String(profile.age)} />
@@ -77,4 +85,6 @@ const styles = StyleSheet.create({
   label: { fontSize: 15, color: '#333' },
   value: { fontSize: 15, fontWeight: '500' },
   error: { color: '#d00', margin: 16 },
+  recordBtn: { marginTop: 24, backgroundColor: '#ef4444', borderRadius: 8, padding: 16, alignItems: 'center' },
+  recordBtnText: { color: '#fff', fontSize: 16, fontWeight: '600' },
 });
